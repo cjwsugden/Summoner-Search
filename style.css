@@ -1,0 +1,63 @@
+li{
+  color: white;
+  font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif";
+}
+
+.side{
+  margin:0 auto;
+  float:center; 
+  
+  font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif";
+  font-size:30px;
+  padding-top:50px;
+  text-shadow:2px 2px #000000;
+}
+
+.box{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom: 50px;
+}
+
+
+
+body {
+  background-image:scr="bg2.jpg";
+  background-position:top;
+  text-align: center;
+  background-repeat:no-repeat;
+  background-size:cover;
+  
+}
+
+.logo img{
+
+  float: left;
+  width: 200px;
+  height: auto;
+  margin-top: 35px;
+  
+}
+
+#find{
+  width:500px;
+  height:40px;
+}
+
+#description{
+text-shadow:1px 1px black;
+}
+
+#but{
+  height:40px;
+}
+
+.gradient-box{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+@media{
+  background-attachment:scroll
+}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+
+  <head>
+      <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0;  user-scalable=0;" name="viewport">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+       
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1" />
+        
+        <title>
+          Summoner Search
+        </title>
+
+            
+
+
+  <style>
+
+    body{
+    background-color:black;
+    background-image:url("bg2.jpg");
+    }
+</style>
+
+  </head>
+
+
+  <body width = "device-width">
+
+    <div class="header"  
+    <nav>
+      <div class="logo">
+        <img src="Logo.png" alt="Summoner Search" style="width:505px;height=300px" class="center">
+      </div>
+
+
+        </nav> 
+        <br>
+       
+
+        <div class="side"  style="font-size:50px; color:white;">SEARCH THE DEPTHS WITH NAUTILUS TO FIND YOUR LEAGUE OF LEGENDS OPPONENTS<br>
+          ↓↓↓
+          <br>
+          <br>
+       
+        </div>
+      <div class="box">
+      <input type="Search"
+      id="find"
+      placeholder="Summoner name...">
+      
+
+      <br>
+      <br>
+      
+       <audio id="audio" src="https://vignette.wikia.nocookie.net/leagueoflegends/images/5/5c/Nautilus.move5.ogg/revision/latest?cb=20120616030109" autoplay="false" ></audio>
+
+      <audio id="audio1" src="https://vignette.wikia.nocookie.net/leagueoflegends/images/d/db/Nautilus.move7.ogg/revision/latest?cb=20120616030109" autoplay="false" ></audio> 
+
+
+
+
+      <button id="but"
+      onclick="Lake()"> Search
+      </button>
+      </div>
+      </div>
+
+      <div class="gradient-box">
+       <div id="result" style="font-family:garamond; font-size:50px;  text-align:center; position: centre; padding-top:25px; padding-bottom: 20px; display:flexbox;  border: 15px double transparent; border-radius:25px; border-image: linear-gradient(to right, blue, green); border-image-slice: 1; ">
+        </div>
+      </div>
+
+      <body>
+     <div class='bg'></div>
+      </body>
+      
+    <main>
+
+      <div id="description" style="font-family:garamond;color:white; font-weight:bold; font-size:35px; padding-top:50px; margin-bottom: 50px;">
+        Summoner Search allows you to search for players via their Summoner usernames and retrieve their account level and profile icon.
+      </div>
+
+
+    </main>
+
+
+
+
+
+
+    <script>
+
+    function playSound() {
+          var sound = document.getElementById("audio");
+          sound.play();
+      }
+
+    function playSound1() {
+          var sound = document.getElementById("audio1");
+          sound.play();
+      }
+
+
+
+
+        var input = document.getElementById("find");
+
+        input.addEventListener("keyup", function(event) {
+
+        if (event.keyCode === 13) {
+          console.log("hello")
+
+        event.preventDefault();
+
+        Lake();
+      }
+      });
+
+
+
+      function Lake(){
+
+        
+  
+        var sname = document.getElementById("find").value;
+
+        const url = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/";
+
+        const key = "?api_key=RGAPI-819244a6-d5f8-4dda-8c27-f24e3b0b6aec";
+
+        var targetUrl = url + sname + key;
+
+ 
+
+
+
+        const res = document.getElementById("result");
+        const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+        //const targetUrl = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/CameronJWS?api_key=RGAPI-819244a6-d5f8-4dda-8c27-f24e3b0b6aec";
+        fetch(proxyUrl + targetUrl)
+        .then(response => response.json())
+        .then(data => {
+          
+          if(data.id === undefined){
+            playSound1();
+            res.innerHTML=`<li>Summoner not registered on NA<br></li>`
+            res.innerHTML+= '<img src="sad.png" alt="Sad kitten"/>';
+          }
+
+          else{
+            playSound();
+          const imageUrl = `http://ddragon.leagueoflegends.com/cdn/10.9.1/img/profileicon/${data.profileIconId}.png`
+
+          res.innerHTML=`<li>Summoner Name: ${data.name}</li>`;
+          res.innerHTML+=`<li>Summoner Level: ${data.summonerLevel}</li>
+          <li style="list-style:none;">&nbsp;</li>`;
+          
+          res.innerHTML += `<img src="${imageUrl}" />` ;
+          console.log(data, "hi")
+          }
+
+
+
+        });
+        
+      }
+
+
+
+        
+
+
+
+
+
+
+
+
+
+    
+       
+    </script>
+        
+  </body>
+</html>
